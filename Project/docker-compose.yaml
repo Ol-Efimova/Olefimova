@@ -1,6 +1,5 @@
 
 services:
-  # 1. Основное приложение
   app:
     build:
       context: ./app
@@ -15,7 +14,7 @@ services:
       - database
       - rabbitmq
 
-  # 2. Web-прокси (Nginx)
+
   web-proxy:
     image: nginx:alpine
     ports:
@@ -27,7 +26,6 @@ services:
       - app
     restart: unless-stopped
 
-  # 3. RabbitMQ
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
@@ -40,7 +38,6 @@ services:
       - RABBITMQ_DEFAULT_PASS=secret
     restart: always
 
-  # 4. База данных PostgreSQL
   database:
     image: postgres:17-alpine
     environment:
